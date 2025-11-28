@@ -1,0 +1,409 @@
+
+
+=========================PROCURE API Endpoints (Clean & Professional Documentation)====[57 API]===============================
+
+Below is a fully organized and structured list of all PROCURE API endpoints extracted from your Postman collection.
+Each entry includes:
+Name
+HTTP Method
+Path
+Full URL Example (<base_url> placeholder)
+Body Mode (raw, formdata, none)
+
+
+
+-------------------------------------------------------------------------------------------------------------
+✅ 1. Authentication & Users
+
+
+| Name                 | Method | Path                   | Full URL Example                                                           | Body Mode |
+| -------------------- | ------ | ---------------------- | -------------------------------------------------------------------------- | --------- |
+| Signup – Create User | POST   | `/api/admin/users`     | `<base_url>/api/admin/users`                                               | raw       |
+| Login                | POST   | `/api/admin/login`     | `<base_url>/api/admin/login`                                               | raw       |
+| Get All Users        | GET    | `/api/admin/users`     | `<base_url>/api/admin/users`                                               | none      |
+| Get User (filtered)  | GET    | `/api/admin/users`     | `<base_url>/api/admin/users?email=shukl&sortBy=email:asc&page=1&perPage=5` | none      |
+| Update User          | PUT    | `/api/admin/users/:id` | `<base_url>/api/admin/users/6927a3b8e4921d038361f74d`                      | raw       |
+| Delete User          | DELETE | `/api/admin/users/:id` | `<base_url>/api/admin/users/6927a3b8e4921d038361f74d`                      | none      |
+
+-------------------------------------------------------------------------------------------------------------
+✅ 2. Suppliers
+
+
+| Name                               | Method | Path                               | Full URL Example                                                          | Body Mode |
+| ---------------------------------- | ------ | ---------------------------------- | ------------------------------------------------------------------------- | --------- |
+| Create Supplier (Basic)            | POST   | `/api/admin/suppliers`             | `<base_url>/api/admin/suppliers`                                          | raw       |
+| Insert Supplier (with Logo Upload) | POST   | `/api/admin/suppliers/suppliers`   | `<base_url>/api/admin/suppliers/suppliers`                                | formdata  |
+| Get All Suppliers                  | GET    | `/api/admin/suppliers`             | `<base_url>/api/admin/suppliers?page=1&limit=5`                           | none      |
+| Get Supplier by ID                 | GET    | `/api/admin/suppliers/:id`         | `<base_url>/api/admin/suppliers/6927a59de4921d038361f75d`                 | none      |
+| Update Supplier                    | PUT    | `/api/admin/suppliers/:id`         | `<base_url>/api/admin/suppliers/692355c671fa469d5ce33eb0`                 | raw       |
+| Delete Supplier                    | DELETE | `/api/admin/suppliers/:id`         | `<base_url>/api/admin/suppliers/6927a59de4921d038361f75d`                 | none      |
+| Search Supplier by Name            | GET    | `/api/admin/suppliers/search/name` | `<base_url>/api/admin/suppliers/search/name?firstName=zzz&page=1&limit=3` | none      |
+| Suppliers With Logo (Paginated)    | GET    | `/api/admin/suppliers/name/logo`   | `<base_url>/api/admin/suppliers/name/logo?page=1`                         | none      |
+| Supplier Query Search              | GET    | `/api/admin/suppliers/search/q`    | `<base_url>/api/admin/suppliers/search/q?q=abc`                           | none      |
+
+-------------------------------------------------------------------------------------------------------------
+✅ 3. Categories
+
+
+| Name                               | Method | Path                            | Example                                                        | Body     |
+| ---------------------------------- | ------ | ------------------------------- | -------------------------------------------------------------- | -------- |
+| Add Category (Basic)               | POST   | `/api/admin/cat/categories`     | `<base_url>/api/admin/cat/categories`                          | raw      |
+| Create Category (with Image)       | POST   | `/api/admin/cat/category`       | `<base_url>/api/admin/cat/category`                            | formdata |
+| Get All Categories                 | GET    | `/api/admin/cat/categories`     | `<base_url>/api/admin/cat/categories`                          | none     |
+| Get Category by ID                 | GET    | `/api/admin/cat/categories/:id` | `<base_url>/api/admin/cat/categories/6927a7a04c13e5d47e1ae3db` | none     |
+| Update Category                    | PUT    | `/api/admin/cat/categories/:id` | `<base_url>/api/admin/cat/categories/6927a7a04c13e5d47e1ae3db` | raw      |
+| Delete Category                    | DELETE | `/api/admin/cat/categories/:id` | `<base_url>/api/admin/cat/categories/6927a7a04c13e5d47e1ae3db` | none     |
+| Categories Paginated (with images) | GET    | `/api/admin/cat/category`       | `<base_url>/api/admin/cat/category?page=1&limit=5`             | none     |
+| Category Search                    | GET    | `/api/admin/cat/search`         | `<base_url>/api/admin/cat/search?q=electr`                     | none     |
+| Public Category Search             | GET    | `/api/category/search`          | `<base_url>/api/category/search?q=electr`                      | none     |
+
+-------------------------------------------------------------------------------------------------------------
+✅ 4. Subcategories
+
+
+| Name                          | Method | Path                                                  | Example URL                                                                  | Body |
+| ----------------------------- | ------ | ----------------------------------------------------- | ---------------------------------------------------------------------------- | ---- |
+| Add Subcategory               | POST   | `/api/admin/sub/categories/:categoryId/subcategories` | `<base_url>/api/admin/sub/categories/6927a6a7e4921d038361f76c/subcategories` | raw  |
+| Get Subcategories by Category | GET    | same path                                             | same URL                                                                     | none |
+| Update Subcategory            | PUT    | `/api/admin/sub/subcategories/:id`                    | `<base_url>/api/admin/sub/subcategories/6927a9dd2171a6791761101d`            | raw  |
+| Delete Subcategory            | DELETE | same path                                             | same URL                                                                     | none |
+| All Subcategories (Paginated) | GET    | `/api/admin/sub/subcategories`                        | `<base_url>/api/admin/sub/subcategories?page=1&limit=5`                      | none |
+
+-------------------------------------------------------------------------------------------------------------
+✅ 5. Products
+
+| Name                               | Method | Path                                          | Example                                                                   | Body     |
+| ---------------------------------- | ------ | --------------------------------------------- | ------------------------------------------------------------------------- | -------- |
+| Bulk Upload Products (Excel)       | POST   | `/api/admin/products/bulk-upload/:supplierId` | `<base_url>/api/admin/products/bulk-upload/6927a472e4921d038361f75b`      | formdata |
+| Create Single Product              | POST   | `/api/admin/products`                         | `<base_url>/api/admin/products`                                           | raw      |
+| Get All Products                   | GET    | `/api/admin/products`                         | `<base_url>/api/admin/products?page=1&limit=10`                           | none     |
+| Get Product by ID                  | GET    | `/api/admin/products/:id`                     | `<base_url>/api/admin/products/6927aa4f2171a6791761102b`                  | none     |
+| Update Product                     | PUT    | `/api/admin/products/:id`                     | same as above                                                             | raw      |
+| Delete Product                     | DELETE | `/api/admin/products/:id`                     | `<base_url>/api/admin/products/{{productId}}`                             | none     |
+| Search by Name/ItemCode            | GET    | `/api/admin/products/search/q`                | `<base_url>/api/admin/products/search/q?q=smartphone`                     | none     |
+| Get by Category                    | GET    | `/api/admin/products/category/:categoryName`  | `<base_url>/api/admin/products/category/Electronics`                      | none     |
+| Get by Subcategory                 | GET    | `/api/admin/products/subcategory/:name`       | `<base_url>/api/admin/products/subcategory/KG`                            | none     |
+| All Categories (from Products)     | GET    | `/api/admin/products/categories`              | same                                                                      | none     |
+| All Subcategories (from Products)  | GET    | `/api/admin/products/subcategories`           | same                                                                      | none     |
+| Product Subcategory by Category ID | GET    | `/api/admin/products/subcategories/by/:id`    | `<base_url>/api/admin/products/subcategories/by/6927a8a52171a67917611000` | none     |
+
+-------------------------------------------------------------------------------------------------------------
+✅ 6. Clients
+
+
+| Name            | Method | Path                 | Example                                        | Body |
+| --------------- | ------ | -------------------- | ---------------------------------------------- | ---- |
+| Create Client   | POST   | `/api/admin/clients` | `<base_url>/api/admin/clients`                 | raw  |
+| Get All Clients | GET    | `/api/admin/clients` | `<base_url>/api/admin/clients?page=1&limit=10` | none |
+
+-------------------------------------------------------------------------------------------------------------
+✅ 7. Client History
+
+
+| Name                            | Method | Path                           | Example                                                       | Body |
+| ------------------------------- | ------ | ------------------------------ | ------------------------------------------------------------- | ---- |
+| Add Client History              | POST   | `/api/admin/clientHistory/add` | `<base_url>/api/admin/clientHistory/add`                      | raw  |
+| Get Client History by Client ID | GET    | `/api/admin/clientHistory/:id` | `<base_url>/api/admin/clientHistory/6927ad6d2171a6791761104d` | none |
+
+-------------------------------------------------------------------------------------------------------------
+✅ 8. Banners
+
+
+| Name                                             | Method | Path                         | Example                                                     | Body     |
+| ------------------------------------------------ | ------ | ---------------------------- | ----------------------------------------------------------- | -------- |
+| Create Banner                                    | POST   | `/api/home/banner`           | `<base_url>/api/home/banner`                                | formdata |
+| Get Home Data (Banners + Categories + Suppliers) | GET    | `/api/home`                  | `<base_url>/api/home?page=1&limit=10`                       | none     |
+| Admin – List Banners                             | GET    | `/api/home/admin/banner`     | `<base_url>/api/home/admin/banner?page=1&limit=10`          | none     |
+| Update Banner                                    | PUT    | `/api/home/admin/banner/:id` | `<base_url>/api/home/admin/banner/6927ae1f2171a6791761105d` | formdata |
+| Delete Banner                                    | DELETE | same                         | same                                                        | none     |
+| Get Banner by ID                                 | GET    | same                         | same                                                        | none     |
+
+-------------------------------------------------------------------------------------------------------------
+✅ 9. Unified Search
+
+
+| Name                       | Method | Path                      | Example                                                 | Body |
+| -------------------------- | ------ | ------------------------- | ------------------------------------------------------- | ---- |
+| Global Search              | GET    | `/api/search`             | `<base_url>/api/search?q=electr&page=1&limit=10`        | none |
+| Search Products by Name    | GET    | `/api/products/search`    | `<base_url>/api/products/search?q=sample`               | none |
+| Search by Item Code        | GET    | `/api/itemcode/search`    | `<base_url>/api/itemcode/search?q=ITM001`               | none |
+| Search by Category Name    | GET    | `/api/category/search`    | `<base_url>/api/category/search?q=elect`                | none |
+| Search by Subcategory Name | GET    | `/api/subcategory/search` | `<base_url>/api/subcategory/search?q=xyz`               | none |
+| Search by Supplier Name    | GET    | `/api/supplier/search`    | `<base_url>/api/supplier/search?q=tata&page=1&limit=10` | none |
+
+
+
+
+
+
+==============================================END=====================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+====================================================extra=============================
+
+********************************************************************************************************************************
+****************************************************PRODUCT*********************************************************************
+
+BULK UPLOAD PRODUCT BY SUPPLIER ID (EXCEL)
+-------------------------------------------
+POST---> {{base_url}}/api/admin/products/bulk-upload/:supplierId
+Ex-----> {{base_url}}/api/admin/products/bulk-upload/692355c671fa469d5ce33eb0
+In Body-->Form-data---->key: excelFile,   value: choose file
+
+***************************************************
+
+CREATE SINGLE PRODUCT
+---------------------
+POST--->   {{base_url}}/api/admin/products
+
+in Body
+{
+  "ProductName": "Smartphone X100",
+  "ItemCode": "X100-003",
+  "Unit": "Piece",
+  "Description": "A high-end smartphone.",
+  "Category": {
+    "CategoryID": "69235b6771fa469d5ce33ec6",
+    "CategoryName": "Electronics"
+  },
+  "SubCategory": {
+    "SubCategoryID": "69236301eb51a0529bf7716b",
+    "SubCategoryName": "LG",
+    "CategoryID": "69235b6771fa469d5ce33ec6"
+  },
+  "supplierId": "692355c671fa469d5ce33eb0"
+}
+***************************************************
+GET ALL PRODUCTS
+----------------
+GET---> {{base_url}}/api/admin/products?page=1&limit=10
+***************************************************
+GET PRODUCT BY PRODUCT ID 
+------------------
+GET--->{{base_url}}/api/admin/products/:id
+Ex--> {{base_url}}/api/admin/products/692365dbeb51a0529bf7717e
+
+**************************************************
+
+UPDATE PRODUCT BY PRODUCT ID
+----------------------------
+PUT---> {{base_url}}/api/admin/products/:id
+Ex----> {{base_url}}/api/admin/products/692365dbeb51a0529bf7717e
+in body
+{
+  "ProductName": "Updated Smartphone Y100"
+}
+*************************************************
+DELETE PRODUCT BY PRODUCT ID 
+----------------------------
+DELETE---> {{base_url}}/api/admin/products/{{productId}}
+
+*************************************************
+GET PRODUCT BY QUERY (NAME/ITEM CODE)
+------------------------------------
+GET---> {{base_url}}/api/admin/products/search/q?q=smartphone&page=1&limit=10
+
+************************************************
+GET PRODUCT BY CATEGORY 
+-----------------------
+GET--> {{base_url}}/api/admin/products/category/Electronics?page=1&limit=5
+
+************************************************
+GET PRODUCT BY SUBCATEGORY 
+-------------------------
+GET---> {{base_url}}/api/admin/products/subcategory/LG
+***********************************************
+GET ALL CATEGORIES (FROM PRODUCT)
+----------------------------------
+GET--> {{base_url}}/api/admin/products/cat/categories
+***********************************************
+GET ALL SUBCATEGORIES (FROM PRODUCT)
+------------------------------------
+GET--> {{base_url}}/api/admin/products/sub/subcategories
+***********************************************
+GET ALL PRODUCTS BY CATEGORIES
+----------------------------
+GET---> {{base_url}}/api/admin/products/categories
+**********************************************
+GET PRODUCT SUBCATEGORIES BY CATEGORY ID
+---------------------------------------
+GET---> {{base_url}}/api/admin/products/subcategories/by/:categoryId
+Ex-->  {{base_url}}/api/admin/products/subcategories/by/6925bcaba2d1fb35e82a71ba
+
+**************************************************************************************************************************
+*************************************************AUTHENTICATION***********************************************************
+
+CREATE USER
+-----------
+POST---> {{base_url}}/api/admin/users
+
+IN BODY 
+{
+  "username": "shukla",
+  "role": "Sales",
+  "email": "shukla@example.com",
+  "password": "Shukla@123",
+  "phoneNumber": "+974 55568329"
+}
+*************************************************
+
+LOGIN USER 
+-----------
+POST---> {{base_url}}/api/admin/login 
+
+IN REQUEST BODY 
+{
+  "email": "shukla@example.com",
+  "password": "Shukla@123"
+}
+COPY TOKEN FROM RESPONSE BODY
+
+************************************************
+GET ALL USER
+-------------
+GET---> {{base_url}}/api/admin/users
+
+***********************************************
+
+GET USER WITH FILTER 
+-------------------
+GET---> {{base_url}}/api/admin/users?email=krish&sortBy=email:asc&page=1&perPage=5
+
+[ FOR TEST ]
+GO TO SCRIPT TAB IN POSTMAN---CHOOSE POST RESPONSE(SECOND OPTION)---IN RIGHT SIDE WRITE THIS AND CLICK SEND
+pm.test("Users fetched", function () {
+  pm.response.to.have.status(200);
+  pm.expect(pm.response.json().code).to.eql(200);
+});
+THEN YOU CAN SEE IN RESPONSE BODY TEST TAB 1/1 AND PASSED MESSAGE
+
+************************************************
+UPDATE USER BY USER ID
+-----------
+PUT---> {{base_url}}/api/admin/users/6923501d71fa469d5ce33e97
+************************************************
+DELETE USER BY USER ID
+----------
+DELETE---> {{base_url}}/api/admin/users/:id
+EX-------> {{base_url}}/api/admin/users/6923501d71fa469d5ce33e97
+
+***************************************************************************************************************************************
+****************************************************SUPPLIER***************************************************************************
+
+CREATE SUPPLIER (BASIC)
+---------------------
+POST--> {{base_url}}/api/admin/suppliers
+
+IN BODY
+{
+  "name": "Tata Supplier",
+  "officeAddress": "Mumbai city",
+  "contactNumber": "974 45678901",
+  "email": "hitech@gmail.com",
+  "companyName": "ABC Electronics"
+}
+
+*************************************************
+INSERT SUPPLIER (WITH LOGO UPLOAD)
+----------------------------------
+POST---> {{base_url}}/api/admin/suppliers/suppliers
+
+SELECT BODY---FORM-DATA
+
+firstName (text) :zzz Trader
+lastName (text):Doe
+email (text):info@bigtrader.biz
+companyName (text):BigTrader Technologies LLC
+companyType (text):BigTrader
+officeAddress (text):201-42, Kate Business Center, Al Sadd, Doha, Qatar.
+contactNumber (text):974 45678901
+companyLogo (text):  select photo
+
+*****************************************************
+GET ALL SUPPLIERS
+-----------------
+GET---> {{base_url}}/api/admin/suppliers?page=1&limit=5
+
+*******************************************************
+GET SUPPLIER BY SUPPLIER ID 
+----------------------------
+GET---> {{base_url}}/api/admin/suppliers/:id
+EX----> {{base_url}}/api/admin/suppliers/692355c671fa469d5ce33eb0
+******************************************************
+UPDATE SUPPLIER 
+---------------
+PUT---> {{base_url}}/api/admin/suppliers/:id
+EX----> {{base_url}}/api/admin/suppliers/692355c671fa469d5ce33eb0
+IN BODY
+{
+  "name": "Updated Supplier",
+  "officeAddress": "New Address"
+}
+*******************************************************
+DELETE SUPPLIER
+---------------
+DELETE---> {{base_url}}/api/admin/suppliers/692355c671fa469d5ce33eb0
+EX----> {{base_url}}/api/admin/suppliers/692355c671fa469d5ce33eb0
+*******************************************************
+GET SUPPLIER BY NAME SEARCH  (Search suppliers by name)
+---------------------------
+GET--->   {{base_url}}/api/admin/suppliers/search/name 
+EX---->{{base_url}}/api/admin/suppliers/search/name?firstName=zzz&page=1&limit=3
+*******************************************************
+GET SUPPLIER WITH LOGO PAGINATED
+GET----> {{base_url}}/api/admin/suppliers/name/logo?page=1
+*******************************************************
+GET SUPPLIER BY QUERY  (Search suppliers by query)
+---------------------
+GET---> {{base_url}}/api/admin/suppliers/search/q?q=abc
+
+*****************************************************************************************************************************************
+*******************************************************CATEGORY**************************************************************************
+
+ADD CATEGORY (BASIC)
+--------------------
+POST----> {{base_url}}/api/admin/cat/categories
+IN BODY 
+{
+  "name": "Electronics Top",
+  "description": "Devices and gadgets for everyday use",
+  "subcategories": ["LG", "KG", "MG"]
+}
+******************************************************
+CREATE CATEGORY WITH IMAGE UPLOAD 
+---------------------------------
+POST---> {{base_url}}/api/admin/cat/category 
+
+IN BODY SELECT FORM DATA
+
+name (text):sports bjj
+description (text):Devices and gadgets
+supplierId (text) :6923578871fa469d5ce33eb2
+*****************************************************
+GET ALL CATEGORIES
+-------------------
+{{base_url}}/api/admin/cat/categories
+****************************************************

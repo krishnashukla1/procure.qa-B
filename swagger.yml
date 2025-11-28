@@ -1,0 +1,438 @@
+openapi: 3.0.0
+info:
+  title: PROCURE API Documentation
+  version: 1.0.0
+  description: Full API documentation for the PROCURE platform.
+
+servers:
+  - url: http://localhost:5000
+  - url: https://your-domain.com
+
+tags:
+  - name: Auth
+  - name: Users
+  - name: Suppliers
+  - name: Categories
+  - name: Subcategories
+  - name: Products
+  - name: Clients
+  - name: Client History
+  - name: Banners
+  - name: Search
+
+paths:
+
+  ###########################################
+  # AUTH & USERS
+  ###########################################
+
+  /api/admin/users:
+    post:
+      tags: [Users]
+      summary: Signup - Create User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                firstName: Krishna
+                lastName: Shukla
+                email: test@example.com
+                password: admin123
+      responses:
+        '201':
+          description: User created
+
+    get:
+      tags: [Users]
+      summary: Get All Users
+      parameters:
+        - in: query
+          name: email
+          schema: { type: string }
+        - in: query
+          name: sortBy
+          schema: { type: string }
+        - in: query
+          name: page
+          schema: { type: integer }
+        - in: query
+          name: perPage
+          schema: { type: integer }
+      responses:
+        '200': { description: Users list }
+
+  /api/admin/login:
+    post:
+      tags: [Auth]
+      summary: Login Admin User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+                email: admin@example.com
+                password: admin123
+      responses:
+        '200': { description: Authenticated }
+
+  /api/admin/users/{id}:
+    get:
+      tags: [Users]
+      summary: Get User by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+      responses:
+        '200': { description: User found }
+
+    put:
+      tags: [Users]
+      summary: Update User
+      parameters:
+        - in: path
+          name: id
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+                firstName: Updated
+      responses:
+        '200': { description: Updated }
+
+    delete:
+      tags: [Users]
+      summary: Delete User
+      parameters:
+        - in: path
+          name: id
+          required: true
+      responses:
+        '200': { description: Deleted }
+
+  ###########################################
+  # SUPPLIERS
+  ###########################################
+
+  /api/admin/suppliers:
+    post:
+      tags: [Suppliers]
+      summary: Create Basic Supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+                firstName: Tata
+                lastName: Group
+                email: tata@group.com
+      responses:
+        '201': { description: Created }
+
+    get:
+      tags: [Suppliers]
+      summary: Get All Suppliers
+      parameters:
+        - in: query
+          name: page
+        - in: query
+          name: limit
+      responses:
+        '200': { description: Supplier list }
+
+  /api/admin/suppliers/suppliers:
+    post:
+      tags: [Suppliers]
+      summary: Create Supplier with Logo
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                logo:
+                  type: string
+                  format: binary
+                firstName:
+                  type: string
+      responses:
+        '201': { description: Created }
+
+  /api/admin/suppliers/{id}:
+    get:
+      tags: [Suppliers]
+      summary: Get Supplier by ID
+      parameters:
+        - in: path
+          name: id
+      responses:
+        '200': { description: Supplier }
+
+    put:
+      tags: [Suppliers]
+      summary: Update Supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+                firstName: Updated
+      responses:
+        '200': { description: Updated }
+
+    delete:
+      tags: [Suppliers]
+      summary: Delete Supplier
+      responses:
+        '200': { description: Deleted }
+
+  /api/admin/suppliers/search/name:
+    get:
+      tags: [Suppliers]
+      summary: Search Suppliers by Name
+      parameters:
+        - in: query
+          name: firstName
+      responses:
+        '200': { description: List }
+
+  ###########################################
+  # CATEGORIES
+  ###########################################
+
+  /api/admin/cat/categories:
+    post:
+      tags: [Categories]
+      summary: Add Category
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+                name: Electronics
+      responses:
+        '201': { description: Created }
+
+    get:
+      tags: [Categories]
+      summary: Get All Categories
+      responses:
+        '200': { description: Categories list }
+
+  /api/admin/cat/category:
+    post:
+      tags: [Categories]
+      summary: Create Category with Image
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                name:
+                  type: string
+      responses:
+        '201': { description: Created }
+
+    get:
+      tags: [Categories]
+      summary: Get Paginated Categories
+      responses:
+        '200': { description: List }
+
+  /api/admin/cat/categories/{id}:
+    get:
+      tags: [Categories]
+      summary: Get Category by ID
+    put:
+      tags: [Categories]
+      summary: Update Category
+    delete:
+      tags: [Categories]
+      summary: Delete Category
+
+  ###########################################
+  # SUBCATEGORIES
+  ###########################################
+
+  /api/admin/sub/categories/{catId}/subcategories:
+    post:
+      tags: [Subcategories]
+      summary: Add Subcategory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+                name: Mobiles
+    get:
+      tags: [Subcategories]
+      summary: Get Subcategories by Category
+
+  /api/admin/sub/subcategories/{id}:
+    put:
+      tags: [Subcategories]
+      summary: Update Subcategory
+    delete:
+      tags: [Subcategories]
+      summary: Delete Subcategory
+
+  ###########################################
+  # PRODUCTS
+  ###########################################
+
+  /api/admin/products:
+    post:
+      tags: [Products]
+      summary: Create Single Product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+                name: iPhone 15
+                price: 1000
+    get:
+      tags: [Products]
+      summary: Get All Products
+      responses:
+        '200': { description: list }
+
+  /api/admin/products/bulk-upload/{supplierId}:
+    post:
+      tags: [Products]
+      summary: Bulk Upload Products (Excel)
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+
+  /api/admin/products/{id}:
+    get:
+      tags: [Products]
+      summary: Get Product
+    put:
+      tags: [Products]
+      summary: Update Product
+    delete:
+      tags: [Products]
+      summary: Delete Product
+
+  ###########################################
+  # CLIENT
+  ###########################################
+
+  /api/admin/clients:
+    post:
+      tags: [Clients]
+      summary: Create Client
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+                name: ABC Pvt Ltd
+    get:
+      tags: [Clients]
+      summary: Get All Clients
+
+  ###########################################
+  # CLIENT HISTORY
+  ###########################################
+
+  /api/admin/clientHistory/add:
+    post:
+      tags: [Client History]
+      summary: Add Client History
+
+  /api/admin/clientHistory/{clientId}:
+    get:
+      tags: [Client History]
+      summary: Get Client History
+
+  ###########################################
+  # BANNERS
+  ###########################################
+
+  /api/home/banner:
+    post:
+      tags: [Banners]
+      summary: Create Banner
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+
+  /api/home:
+    get:
+      tags: [Banners]
+      summary: Get Home Data
+
+  /api/home/admin/banner:
+    get:
+      tags: [Banners]
+      summary: List All Banners
+
+  /api/home/admin/banner/{id}:
+    put:
+      tags: [Banners]
+      summary: Update Banner
+    delete:
+      tags: [Banners]
+      summary: Delete Banner
+    get:
+      tags: [Banners]
+      summary: Banner by ID
+
+  ###########################################
+  # SEARCH
+  ###########################################
+
+  /api/search:
+    get:
+      tags: [Search]
+      summary: Global Search
+
+  /api/products/search:
+    get:
+      tags: [Search]
+      summary: Search Product by Name
+
+  /api/itemcode/search:
+    get:
+      tags: [Search]
+      summary: Search Product by Item Code
+
+  /api/category/search:
+    get:
+      tags: [Search]
+      summary: Search Category
+
+  /api/subcategory/search:
+    get:
+      tags: [Search]
+      summary: Search Subcategory
+
+  /api/supplier/search:
+    get:
+      tags: [Search]
+      summary: Search Supplier

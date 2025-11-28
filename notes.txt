@@ -1,0 +1,28 @@
+POSTMAN FOLDER LINK WHERE I TESTED ALL API (FOLDER NAME IS 'PROCURE')--->
+https://web.postman.co/workspace/My-Workspace~63cd1ee8-b498-491f-8dc4-c4075c536f7a/collection/27454415-0514ff7a-da2e-47e0-a526-52249838e36d?action=share&source=copy-link&creator=27454415
+
+OR 
+
+https://.postman.co/workspace/My-Workspace~63cd1ee8-b498-491f-8dc4-c4075c536f7a/collection/27454415-0514ff7a-da2e-47e0-a526-52249838e36d?action=share&creator=27454415&active-environment=27454415-41dd1496-e0f1-44ba-b256-e67914a1cc15
+
+************************
+
+CODE FOLDER LOCATION:    D:\F5-HMWSSB-PROCURE\PROCUREQA
+BACKEND:                 D:\F5-HMWSSB-PROCURE\PROCUREQA\backend\
+FRONTEND:                D:\F5-HMWSSB-PROCURE\PROCUREQA\client\
+
+************************
+DB name is----> procureqa
+
+
+
+
+
+
+
+
+
+
+
+
+
