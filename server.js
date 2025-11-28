@@ -21,10 +21,31 @@ const app = express();
 // Middleware
 // app.use(cors()); // Enable CORS for all routes
 
-app.use(cors({
-  origin: 'http://localhost:5173',  // Frontend URL
-  credentials: true
-}));
+// app.use(cors({
+//   origin: 'http://localhost:5173',  // Frontend URL
+//   credentials: true
+// }));
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://procureqa.netlify.app"
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (e.g., mobile apps, curl)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 
 
 app.use(express.json()); // Parse JSON bodies
